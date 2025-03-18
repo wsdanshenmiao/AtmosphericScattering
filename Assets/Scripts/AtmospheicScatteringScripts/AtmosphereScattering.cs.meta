@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2aec59d21aaf1ed48815839bc06b311e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - scatterComputeShader: {fileID: 7200000, guid: 30f4a1f3fd7077f469ba6688a7836cd0,
+      type: 3}
+  - m_SkyboxLut: {instanceID: 0}
+  - m_OutDencityLut: {instanceID: 0}
+  - m_SkyboxMaterial: {instanceID: 0}
+  - m_Sun: {instanceID: 0}
+  - atmosphereProperties: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

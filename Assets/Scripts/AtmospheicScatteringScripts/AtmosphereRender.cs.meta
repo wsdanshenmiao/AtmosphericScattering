@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: aff9cb6a328e7fc4d8b595dd5a71b439
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_SkyColorLutMaterial: {instanceID: 0}
+  - m_OutScaterLutmaterial: {instanceID: 0}
+  - atmosphereProperties: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

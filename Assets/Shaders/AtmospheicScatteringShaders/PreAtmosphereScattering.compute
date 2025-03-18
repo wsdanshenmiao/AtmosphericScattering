@@ -1,0 +1,46 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel InscatteringLut
+
+#define COMPUTESHADER
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture3D<float3> _SumRayleighLut;
+RWTexture3D<float3> _SumMieLut;
+
+Texture2D<float3> _OutDencityLut;
+SamplerState LinearClampSampler;
+
+// 用来计算视线方向
+float4 _BottomLeftCorner;
+float4 _TopLeftCorner;
+float4 _BottomRightCorner;
+float4 _TopRightCorner;
+
+float4 _LightDir;
+float4 _CameraPos;
+
+#include "Util.hlsl"
+#include "Scattering.hlsl"
+#include "AtmosphereScattering.hlsl"
+
+//计算天空盒Lut
+[numthreads(1,1,1)]
+void InscatteringLut (uint3 id : SV_DispatchThreadID)
+{
+    float w, h, d;  //纹理的宽度高度深度
+    _SumRayleighLut.GetDimensions(w, h, d);
+
+    float3 coords = float3(id.x / (w - 1), id.y / (h - 1), id.z / (d - 1));
+
+    float3 lightDir, viewDir;
+    float height;
+
+    TransCoordsToParameters(coords, lightDir, viewDir, height);
+    float3 cameraPos = float3(0, height, 0);
+
+    float3 sumRayleigh, sumMie;
+    Inscattering(cameraPos, viewDir, lightDir, sumRayleigh,sumMie);
+
+    _SumRayleighLut[id.xyz] = sumRayleigh;
+    _SumMieLut[id.xyz] = sumMie;
+}
